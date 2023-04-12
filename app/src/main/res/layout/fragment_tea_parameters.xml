@@ -1,118 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_weight="1"
-    android:orientation="vertical"
     tools:context=".TeaParameters">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.proekt.model.SettingsViewModel" />
+    </data>
 
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="258dp"
-        android:layout_height="62dp"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <RadioButton
-            android:id="@+id/variety_1"
-            android:layout_width="124dp"
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="258dp"
+            android:layout_height="62dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RadioButton
+                android:id="@+id/variety_1"
+                android:layout_width="124dp"
+                android:layout_height="wrap_content"
+                android:checked="@{!viewModel.tea_variety}"
+                android:onClick="@{() -> viewModel.setTea_variety(false)}"
+                android:text="Черный чай" />
+
+            <RadioButton
+                android:id="@+id/variety_2"
+                android:layout_width="129dp"
+                android:layout_height="wrap_content"
+                android:checked="@{viewModel.tea_variety}"
+                android:onClick="@{() -> viewModel.setTea_variety(true)}"
+                android:text="Зеленый чай" />
+        </RadioGroup>
+
+        <ImageButton
+            android:id="@+id/close_menu_setting"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Черный чай" />
+            android:layout_marginStart="387dp"
+            android:background="#00FFFFFF"
+            android:minWidth="32dp"
+            android:minHeight="32dp"
+            android:src="@drawable/baseline_close_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <RadioButton
-            android:id="@+id/variety_2"
-            android:layout_width="129dp"
+        <TextView
+            android:id="@+id/count_tea"
+            android:layout_width="wrap_content"
+            android:layout_height="23dp"
+            android:text="@{viewModel.tea_count.toString()}"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/add_portions"
+            app:layout_constraintEnd_toStartOf="@+id/remove_portions"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/add_portions"
+            app:layout_constraintTop_toTopOf="@+id/add_portions"
+            app:layout_constraintVertical_bias="0.444" />
+
+        <ImageButton
+            android:id="@+id/add_portions"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Зеленый чай" />
-    </RadioGroup>
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="15dp"
+            android:background="#00000000"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:src="@drawable/baseline_add_24"
+            app:layout_constraintEnd_toStartOf="@+id/count_tea"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
-    <ImageButton
-        android:id="@+id/close_menu_setting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="387dp"
-        android:background="#00FFFFFF"
-        android:minWidth="32dp"
-        android:minHeight="32dp"
-        android:src="@drawable/baseline_close_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageButton
+            android:id="@+id/remove_portions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="26dp"
+            android:background="#00FFFFFF"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:src="@drawable/baseline_remove_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/count_tea"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="20dp"
-        android:layout_height="23dp"
-        android:text="1"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/add_portions"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/add_portions"
-        app:layout_constraintTop_toTopOf="@+id/add_portions"
-        app:layout_constraintVertical_bias="0.444" />
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="189dp"
+            android:text="Приготовить чай"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button4"
+            app:layout_constraintTop_toBottomOf="@+id/remove_portions" />
 
-    <ImageButton
-        android:id="@+id/add_portions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="15dp"
-        android:background="#00000000"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        android:src="@drawable/baseline_add_24"
-        app:layout_constraintEnd_toStartOf="@+id/textView"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="26dp"
-        android:background="#00FFFFFF"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        android:src="@drawable/baseline_remove_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="189dp"
-        android:text="Приготовить чай"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button4"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="189dp"
-        android:text="Сохранить настройки"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_portions" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:layout_marginTop="189dp"
+            android:text="Сохранить настройки"
+            app:layout_constraintEnd_toStartOf="@+id/button3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_portions" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
 
 

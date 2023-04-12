@@ -11,18 +11,22 @@ public class SettingsViewModel extends ViewModel{
     private MutableLiveData<Integer> tea_temperature = new MutableLiveData<>(100);
 
 
-    public MutableLiveData<Boolean> getTea_variety() { return tea_variety;}
-    public MutableLiveData<Integer> getTea_count() { return tea_count;}
-    public MutableLiveData<Integer> getSugar_count() { return sugar_count;}
-    public MutableLiveData<Integer> getTea_temperature() {return tea_temperature;}
+    public Boolean getTea_variety() { return tea_variety.getValue();}
+    public Integer getTea_count() { return tea_count.getValue();}
+    public Integer getSugar_count() { return sugar_count.getValue();}
+    public Integer getTea_temperature() {return tea_temperature.getValue();}
 
     public void setTea_variety(boolean tea_variety) {
         this.tea_variety.setValue(tea_variety);
         // false - первый сорт, true - второй
     }
 
-    public void setTea_count(int tea_count) {
-        this.tea_count.setValue(Math.min(tea_count, 21));
+    public void addTea_count() {
+        this.tea_count.setValue(Math.min(this.tea_count.getValue()+7,21));
+    }
+
+    public void removeTea_count() {
+        this.tea_count.setValue(Math.max(this.tea_count.getValue()-7,0));
     }
 
     public void setSugar_count(int sugar_count) {

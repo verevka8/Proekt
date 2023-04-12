@@ -32,6 +32,27 @@ public class TeaParameters extends BottomSheetDialogFragment {
                              Bundle savedInstanceState) {
         binding = FragmentTeaParametersBinding.inflate(inflater, container, false);
         model = new ViewModelProvider(getActivity()).get(SettingsViewModel.class);
+        binding.setViewModel(model);
+        binding.addPortions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                model.addTea_count();
+                binding.countTea.setText(model.getTea_count().toString());
+            }
+        });
+        binding.removePortions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                model.removeTea_count();
+                binding.countTea.setText(model.getTea_count().toString());
+            }
+        });
+        binding.closeMenuSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         return binding.getRoot();
     }
 }
