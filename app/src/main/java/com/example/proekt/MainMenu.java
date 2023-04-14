@@ -5,17 +5,23 @@ import android.os.Bundle;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.proekt.databinding.FragmentAuthorizationBinding;
 import com.example.proekt.databinding.FragmentMainMenuBinding;
+import com.example.proekt.databinding.FragmentTeaParametersBinding;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
-public class MainMenu extends Fragment {
+public class MainMenu extends Fragment{
     private FragmentMainMenuBinding binding;
-    public MainMenu() {
+    private TeaParameters blankFragment;
 
+    public MainMenu() {
+        blankFragment = new TeaParameters();
     }
 
     @Override
@@ -30,11 +36,9 @@ public class MainMenu extends Fragment {
         binding.button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TeaParameters blankFragment = new TeaParameters();
                 blankFragment.show(getChildFragmentManager(),blankFragment.getTag());
             }
         });
-
 
         return binding.getRoot();
     }
