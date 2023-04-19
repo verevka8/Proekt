@@ -9,6 +9,8 @@ public class SettingsViewModel extends ViewModel{
     private MutableLiveData<Integer> tea_count = new MutableLiveData<>(7);
     private MutableLiveData<Integer> sugar_count = new MutableLiveData<>(1);
     private MutableLiveData<Integer> tea_temperature = new MutableLiveData<>(100);
+    private MutableLiveData<String> title = new MutableLiveData<>("");
+
 
 
     public Boolean getTea_variety() { return tea_variety.getValue();}
@@ -37,4 +39,11 @@ public class SettingsViewModel extends ViewModel{
         this.tea_temperature.setValue(Math.min(100,tea_temperature));
     }
 
+    public String getTitle() {
+        return title.getValue();
+    }
+
+    public void setTitle(String title) {
+        this.title.setValue(title);
+    }
 }

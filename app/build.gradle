@@ -34,7 +34,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.firebase:firebase-auth:21.0.3'
+
     def nav_version = "2.5.3"
     def lifecycle_version = "2.5.1"
     implementation "androidx.navigation:navigation-fragment:$nav_version"
@@ -50,6 +50,11 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
     // Saved state module for ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
+
+    //firebase
+    implementation 'com.google.firebase:firebase-auth:21.0.3'
+    implementation platform('com.google.firebase:firebase-bom:31.5.0')
+    implementation 'com.google.firebase:firebase-database'
 
 
     implementation 'androidx.appcompat:appcompat:1.6.1'

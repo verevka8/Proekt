@@ -18,10 +18,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 public class MainMenu extends Fragment{
     private FragmentMainMenuBinding binding;
-    private TeaParameters blankFragment;
 
     public MainMenu() {
-        blankFragment = new TeaParameters();
     }
 
     @Override
@@ -36,10 +34,10 @@ public class MainMenu extends Fragment{
         binding.button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                blankFragment.show(getChildFragmentManager(),blankFragment.getTag());
+                TeaParameters Fragmen = new TeaParameters();
+                Fragmen.show(getChildFragmentManager(),Fragmen.getTag());
             }
         });
-
         return binding.getRoot();
     }
 }

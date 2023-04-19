@@ -21,26 +21,21 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Authorization extends Fragment {
 
     private FragmentAuthorizationBinding binding;
     private FirebaseAuth mAuth;
 
-    public Authorization() {
-        // Required empty public constructor
-    }
-
-
+    public Authorization() {}
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
+    public void onCreate(Bundle savedInstanceState) {super.onCreate(savedInstanceState);}
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mAuth = FirebaseAuth.getInstance();
         binding = FragmentAuthorizationBinding.inflate(inflater,container,false);
+        mAuth = FirebaseAuth.getInstance();
         binding.userSingin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,47 +53,50 @@ public class Authorization extends Fragment {
                 signUp(email, password);
             }
         });
+
+       binding.button.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               Navigation.findNavController(getView()).navigate(R.id.action_authorization_to_mainMenu);
+           }
+       });
        return binding.getRoot();
     }
 
     private void signUp(String email, String password) {
-        Log.d("QQQ", "createAccount:" + email);
         if (!validateForm(email,password)) {
             return;
         }
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(requireActivity(), task -> {
             if (task.isSuccessful()) {
-                Log.d("QQQ", "createUserWithEmail:success");
                 FirebaseUser user = mAuth.getCurrentUser();
                 Toast.makeText(getContext(),"Successful",Toast.LENGTH_SHORT).show();
                 Navigation.findNavController(getView()).navigate(R.id.action_authorization_to_mainMenu);
             } else {
-                Log.w("QQQ", "createUserWithEmail:failure", task.getException());
                 Toast.makeText(getContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void signIn(String email, String password) {
-        Log.d("QQQ", "signIn:" + email);
         if (!validateForm(email,password)) {
             return;
         }
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(requireActivity(), task -> {
             if (task.isSuccessful()) {
-                Log.d("QQQ", "signInWithEmail:success");
                 FirebaseUser user = mAuth.getCurrentUser();
                 Toast.makeText(getContext(),"Successful",Toast.LENGTH_SHORT).show();
                 Navigation.findNavController(getView()).navigate(R.id.action_authorization_to_mainMenu);
+                ListSavedSettings list = ListSavedSettings.getInstance();
+                list.setId(user.getUid());
+
             } else {
-                Log.w("QQQ", "signInWithEmail:failure", task.getException());
                 Toast.makeText(getContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private boolean validateForm(String email,String password) {
-        return !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password);
+        return !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password); // сделать более умнее
     }
-
 }

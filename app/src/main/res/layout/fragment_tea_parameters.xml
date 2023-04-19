@@ -4,15 +4,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".TeaParameters">
 
-    <data>
-        <variable
-            name="viewModel"
-            type="com.example.proekt.model.SettingsViewModel" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/remove_sugar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="25dp"
+            android:background="#00FFFFFF"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:src="@drawable/baseline_remove_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/count_sugar"
+            app:layout_constraintTop_toBottomOf="@+id/remove_portions" />
+
+        <TextView
+            android:id="@+id/count_sugar"
+            android:layout_width="wrap_content"
+            android:layout_height="23dp"
+            android:text="1"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/add_sugar"
+            app:layout_constraintEnd_toStartOf="@+id/remove_sugar"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/add_sugar"
+            app:layout_constraintTop_toTopOf="@+id/add_sugar"
+            app:layout_constraintVertical_bias="0.48" />
+
+        <ImageButton
+            android:id="@+id/add_sugar"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="15dp"
+            android:background="#00000000"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:src="@drawable/baseline_add_24"
+            app:layout_constraintEnd_toStartOf="@+id/count_sugar"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_portions" />
 
         <RadioGroup
             android:id="@+id/radioGroup"
@@ -29,16 +68,12 @@
                 android:id="@+id/variety_1"
                 android:layout_width="124dp"
                 android:layout_height="wrap_content"
-                android:checked="@{!viewModel.tea_variety}"
-                android:onClick="@{() -> viewModel.setTea_variety(false)}"
                 android:text="Черный чай" />
 
             <RadioButton
                 android:id="@+id/variety_2"
                 android:layout_width="129dp"
                 android:layout_height="wrap_content"
-                android:checked="@{viewModel.tea_variety}"
-                android:onClick="@{() -> viewModel.setTea_variety(true)}"
                 android:text="Зеленый чай" />
         </RadioGroup>
 
@@ -59,7 +94,7 @@
             android:id="@+id/count_tea"
             android:layout_width="wrap_content"
             android:layout_height="23dp"
-            android:text="@{viewModel.tea_count.toString()}"
+            android:text="7"
             android:textAlignment="center"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/add_portions"
@@ -101,26 +136,30 @@
             app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
         <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="189dp"
-            android:text="Приготовить чай"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/button4"
-            app:layout_constraintTop_toBottomOf="@+id/remove_portions" />
-
-        <Button
-            android:id="@+id/button4"
+            android:id="@+id/save_settings"
             android:layout_width="wrap_content"
             android:layout_height="49dp"
-            android:layout_marginTop="189dp"
+            android:layout_marginTop="23dp"
             android:text="Сохранить настройки"
-            app:layout_constraintEnd_toStartOf="@+id/button3"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_portions" />
+            app:layout_constraintTop_toBottomOf="@+id/nameSettings" />
+
+        <EditText
+            android:id="@+id/nameSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="47dp"
+            android:ems="10"
+            android:hint="Название настроек"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/remove_sugar" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 
