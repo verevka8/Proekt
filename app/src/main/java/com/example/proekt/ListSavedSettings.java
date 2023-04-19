@@ -2,6 +2,8 @@ package com.example.proekt;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -13,8 +15,8 @@ import java.util.Map;
 public class ListSavedSettings {
     private static ListSavedSettings instance;
     public List<TeaSavedSettings> settingsList;
-    private DatabaseReference mDatabase;
-    private String id;
+    final private DatabaseReference mDatabase;
+    public String id;
     private ListSavedSettings(){
         settingsList = new ArrayList<>();
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -29,6 +31,7 @@ public class ListSavedSettings {
     public void setId(String id) {
         this.id = id;
     }
+    public void setInstance(ListSavedSettings i){instance = i;}
 
     public void addSavedSettings(TeaSavedSettings settings){
         settingsList.add(settings);

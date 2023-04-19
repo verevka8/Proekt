@@ -1,9 +1,12 @@
 package com.example.proekt;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,6 +34,9 @@ public class MainMenu extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentMainMenuBinding.inflate(inflater,container,false);
+
+
+
         binding.button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,6 +44,17 @@ public class MainMenu extends Fragment{
                 Fragmen.show(getChildFragmentManager(),Fragmen.getTag());
             }
         });
+        binding.button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MyAdapter adapter = new MyAdapter(ListSavedSettings.getInstance().settingsList);
+                RecyclerView recyclerView = binding.recyclerView;
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+                recyclerView.setLayoutManager(layoutManager);
+                recyclerView.setAdapter(adapter);
+            }
+        });
+
         return binding.getRoot();
     }
 }
