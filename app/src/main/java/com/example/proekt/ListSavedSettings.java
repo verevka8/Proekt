@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class ListSavedSettings {
     private static ListSavedSettings instance;
-    public List<TeaSavedSettings> settingsList;
+    public ArrayList<TeaSavedSettings> settingsList;
     final private DatabaseReference mDatabase;
     public String id;
     private ListSavedSettings(){

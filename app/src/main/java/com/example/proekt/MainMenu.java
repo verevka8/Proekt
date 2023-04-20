@@ -1,23 +1,14 @@
 package com.example.proekt;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-
-import com.example.proekt.databinding.FragmentAuthorizationBinding;
 import com.example.proekt.databinding.FragmentMainMenuBinding;
-import com.example.proekt.databinding.FragmentTeaParametersBinding;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
+
 
 public class MainMenu extends Fragment{
     private FragmentMainMenuBinding binding;
@@ -49,7 +40,7 @@ public class MainMenu extends Fragment{
             public void onClick(View view) {
                 MyAdapter adapter = new MyAdapter(ListSavedSettings.getInstance().settingsList);
                 RecyclerView recyclerView = binding.recyclerView;
-                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
                 recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setAdapter(adapter);
             }
