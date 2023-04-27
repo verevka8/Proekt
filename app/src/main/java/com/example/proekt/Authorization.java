@@ -57,13 +57,6 @@ public class Authorization extends Fragment {
                 signUp(email, password);
             }
         });
-
-       binding.button.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               Navigation.findNavController(getView()).navigate(R.id.action_authorization_to_mainMenu);
-           }
-       });
        return binding.getRoot();
     }
 
@@ -100,11 +93,9 @@ public class Authorization extends Fragment {
                         else{
                             list.setId(user.getUid());
                         }
+                        Navigation.findNavController(getView()).navigate(R.id.action_authorization_to_mainMenu);
                     }
                 });
-
-                Navigation.findNavController(getView()).navigate(R.id.action_authorization_to_mainMenu);
-
             } else {
                 Toast.makeText(getContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
             }

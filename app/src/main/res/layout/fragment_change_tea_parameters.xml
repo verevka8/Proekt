@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Change_tea_parameters">
+
+    <TextView
+        android:id="@+id/count_sugar"
+        android:layout_width="wrap_content"
+        android:layout_height="23dp"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/add_sugar"
+        app:layout_constraintEnd_toStartOf="@+id/remove_sugar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/add_sugar"
+        app:layout_constraintTop_toTopOf="@+id/add_sugar"
+        app:layout_constraintVertical_bias="0.48" />
+
+    <ImageButton
+        android:id="@+id/close_menu_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="387dp"
+        android:background="#00FFFFFF"
+        android:minWidth="32dp"
+        android:minHeight="32dp"
+        android:src="@drawable/baseline_close_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/count_tea"
+        android:layout_width="wrap_content"
+        android:layout_height="23dp"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/add_portions"
+        app:layout_constraintEnd_toStartOf="@+id/remove_portions"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/add_portions"
+        app:layout_constraintTop_toTopOf="@+id/add_portions"
+        app:layout_constraintVertical_bias="0.444" />
+
+    <EditText
+        android:id="@+id/nameSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Название настроек"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_sugar" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Удалить настройки"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/update_settings"
+        app:layout_constraintTop_toBottomOf="@+id/nameSettings" />
+
+    <Button
+        android:id="@+id/update_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="49dp"
+        android:layout_marginTop="12dp"
+        android:text="Обновить настройки"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameSettings" />
+
+    <ImageButton
+        android:id="@+id/add_portions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="15dp"
+        android:background="#00000000"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:src="@drawable/baseline_add_24"
+        app:layout_constraintEnd_toStartOf="@+id/count_tea"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <ImageButton
+        android:id="@+id/add_sugar"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="15dp"
+        android:background="#00000000"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:src="@drawable/baseline_add_24"
+        app:layout_constraintEnd_toStartOf="@+id/count_sugar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_portions" />
+
+    <ImageButton
+        android:id="@+id/remove_sugar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="36dp"
+        android:background="#00FFFFFF"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:src="@drawable/baseline_remove_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/count_sugar"
+        app:layout_constraintTop_toBottomOf="@+id/remove_portions" />
+
+    <ImageButton
+        android:id="@+id/remove_portions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="8dp"
+        android:background="#00FFFFFF"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:src="@drawable/baseline_remove_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/count_tea"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="258dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/variety_1"
+            android:layout_width="124dp"
+            android:layout_height="wrap_content"
+            android:text="Черный чай" />
+
+        <RadioButton
+            android:id="@+id/variety_2"
+            android:layout_width="129dp"
+            android:layout_height="wrap_content"
+            android:text="Зеленый чай" />
+    </RadioGroup>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

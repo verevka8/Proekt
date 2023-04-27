@@ -37,4 +37,11 @@ public class ListSavedSettings {
         settingsList.add(settings);
         mDatabase.child(id).setValue(instance);
     }
+    public void updateSavedSettings(int position, TeaSavedSettings new_settings){
+        settingsList.remove(position);
+        settingsList.add(position,new_settings);
+        HashMap<String, Object> result = new HashMap<>();
+        result.put(id,instance);
+        mDatabase.updateChildren(result);
+    }
 }

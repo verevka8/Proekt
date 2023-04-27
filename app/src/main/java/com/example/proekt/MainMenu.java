@@ -4,6 +4,8 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import com.example.proekt.databinding.FragmentMainMenuBinding;
 
 public class MainMenu extends Fragment{
     private FragmentMainMenuBinding binding;
+    public static MyAdapter adapter;
 
     public MainMenu() {
     }
@@ -25,27 +28,20 @@ public class MainMenu extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentMainMenuBinding.inflate(inflater,container,false);
+        adapter = new MyAdapter(ListSavedSettings.getInstance().settingsList);
+        RecyclerView recyclerView = binding.recyclerView;
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
 
 
-
-        binding.button2.setOnClickListener(new View.OnClickListener() {
+        binding.button2.setOnClickListener(new View.OnClickListener() { //TODO: переименовать кнопку
             @Override
             public void onClick(View view) {
-                TeaParameters Fragmen = new TeaParameters();
-                Fragmen.show(getChildFragmentManager(),Fragmen.getTag());
+                TeaParameters fragment = new TeaParameters();
+                fragment.show(getChildFragmentManager(),fragment.getTag());
             }
         });
-        binding.button4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MyAdapter adapter = new MyAdapter(ListSavedSettings.getInstance().settingsList);
-                RecyclerView recyclerView = binding.recyclerView;
-                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
-                recyclerView.setLayoutManager(layoutManager);
-                recyclerView.setAdapter(adapter);
-            }
-        });
-
         return binding.getRoot();
     }
 }
