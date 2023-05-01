@@ -1,17 +1,13 @@
-package com.example.proekt;
+package com.example.proekt.FragmentsAction;
 
 import android.os.Bundle;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
-
+import com.example.proekt.ListSavedSettings;
+import com.example.proekt.TeaSavedSettings;
 import com.example.proekt.databinding.FragmentActionTeaParametersBinding;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -41,6 +37,12 @@ public class Action_tea_parameters extends BottomSheetDialogFragment {
                 fragment.show(getChildFragmentManager(),fragment.getTag());
             }
         });
+        binding.makeTea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ListSavedSettings.getInstance().prepareTea(position);
+            }
+        });
         return binding.getRoot();
     }
 
@@ -56,12 +58,17 @@ public class Action_tea_parameters extends BottomSheetDialogFragment {
     }
 
     public void updateUi(TeaSavedSettings settings){
-        this.settings = settings;
-        binding.nameTeaParameters.setText(settings.title);
-        binding.informationTeaParameters.setText("Тип чая: " + Boolean.toString(settings.tea_variety) +
-                "\nКол-во чая: " + Integer.toString(settings.tea_count) +
-                "\nТемпература чая: " + Integer.toString(settings.tea_temperature) +
-                "\nКол-во сахара: " + Integer.toString(settings.sugar_count));
+        if (settings != null) {
+            this.settings = settings;
+            binding.nameTeaParameters.setText(settings.title);
+            binding.informationTeaParameters.setText("Тип чая: " + Boolean.toString(settings.tea_variety) +
+                    "\nКол-во чая: " + Integer.toString(settings.tea_count) +
+                    "\nТемпература чая: " + Integer.toString(settings.tea_temperature) +
+                    "\nКол-во сахара: " + Integer.toString(settings.sugar_count));
+        }
+        else{
+            dismiss();
+        }
 
     }
 }

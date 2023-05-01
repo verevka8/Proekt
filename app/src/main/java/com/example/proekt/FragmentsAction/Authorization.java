@@ -1,4 +1,4 @@
-package com.example.proekt;
+package com.example.proekt.FragmentsAction;
 
 import android.os.Bundle;
 
@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.proekt.ListSavedSettings;
+import com.example.proekt.R;
 import com.example.proekt.databinding.FragmentAuthorizationBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -68,6 +70,7 @@ public class Authorization extends Fragment {
             if (task.isSuccessful()) {
                 FirebaseUser user = mAuth.getCurrentUser();
                 Toast.makeText(getContext(),"Successful",Toast.LENGTH_SHORT).show();
+                ListSavedSettings.getInstance().id = user.getUid();
                 Navigation.findNavController(getView()).navigate(R.id.action_authorization_to_mainMenu);
             } else {
                 Toast.makeText(getContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
@@ -103,6 +106,6 @@ public class Authorization extends Fragment {
     }
 
     private boolean validateForm(String email,String password) {
-        return !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password); // сделать более умнее
+        return !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password); // TODO: сделать более умнее
     }
 }

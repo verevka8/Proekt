@@ -1,14 +1,16 @@
-package com.example.proekt;
+package com.example.proekt.FragmentsAction;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.proekt.ListSavedSettings;
+import com.example.proekt.MyAdapter;
 import com.example.proekt.databinding.FragmentMainMenuBinding;
 
 

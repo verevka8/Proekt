@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="4dp"
-    tools:context=".MainMenu">
+    tools:context=".FragmentsAction.MainMenu">
 
     <Button
         android:id="@+id/button2"
@@ -14,9 +14,9 @@
         android:layout_marginStart="142dp"
         android:layout_marginTop="120dp"
         android:layout_marginEnd="175dp"
-        android:text="Заварить чай"
+        android:text="Создать настройку"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.21"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

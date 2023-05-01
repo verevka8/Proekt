@@ -44,4 +44,22 @@ public class ListSavedSettings {
         result.put(id,instance);
         mDatabase.updateChildren(result);
     }
+    public void removeSavedSettings(int position){
+        settingsList.remove(position);
+        HashMap<String, Object> result = new HashMap<>();
+        result.put(id,instance);
+        mDatabase.updateChildren(result);
+    }
+    public void prepareTea(int posotion){
+        TeaSavedSettings settings = settingsList.get(posotion);
+        String res = Integer.toString(settings.tea_variety ? 1 : 0) + ";" + Integer.toString(settings.tea_count) + ";" + Integer.toString(settings.sugar_count)
+                + ";" + "30"; //Integer.toString(settings.tea_temperature)
+        mDatabase.child("192-168-1-160").setValue(res);
+        long lastTime = System.currentTimeMillis();
+        long currentTime = lastTime;
+        while (currentTime - lastTime < 9000){
+            currentTime = System.currentTimeMillis();
+        }
+        mDatabase.child("192-168-1-160").removeValue();
+    }
 }

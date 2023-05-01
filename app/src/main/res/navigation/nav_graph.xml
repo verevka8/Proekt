@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/authorization"
-        android:name="com.example.proekt.Authorization"
+        android:name="com.example.proekt.FragmentsAction.Authorization"
         android:label="fragment_authorization"
         tools:layout="@layout/fragment_authorization" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainMenu"
-        android:name="com.example.proekt.MainMenu"
+        android:name="com.example.proekt.FragmentsAction.MainMenu"
         android:label="fragment_main_menu"
         tools:layout="@layout/fragment_main_menu" />
 </navigation>
