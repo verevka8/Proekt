@@ -1,5 +1,7 @@
 package com.example.proekt.FragmentsAction;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -28,10 +30,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class Authorization extends Fragment {
-
     private FragmentAuthorizationBinding binding;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
+    private SharedPreferences pref;
 
     public Authorization() {}
     @Override
@@ -41,7 +43,11 @@ public class Authorization extends Fragment {
         binding = FragmentAuthorizationBinding.inflate(inflater,container,false);
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
+        pref = getActivity().getSharedPreferences("test", Context.MODE_PRIVATE);
+        String id = pref.getString("id",null);
+        if (id != null){
+            downloadSettings(id);
+        }
         binding.userSingin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,7 +56,6 @@ public class Authorization extends Fragment {
                 signIn(email, password);
             }
         });
-
         binding.userSingup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,48 +69,63 @@ public class Authorization extends Fragment {
 
     private void signUp(String email, String password) {
         if (!validateForm(email,password)) {
+            Toast.makeText(getContext(), "Неверный формат почты или пароля.", Toast.LENGTH_SHORT).show();
             return;
         }
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(requireActivity(), task -> {
             if (task.isSuccessful()) {
                 FirebaseUser user = mAuth.getCurrentUser();
-                Toast.makeText(getContext(),"Successful",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"Успешно!",Toast.LENGTH_SHORT).show();
                 ListSavedSettings.getInstance().id = user.getUid();
                 Navigation.findNavController(getView()).navigate(R.id.action_authorization_to_mainMenu);
+                saveSession(user.getUid());
             } else {
-                Toast.makeText(getContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Регистрация не удалась.", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void signIn(String email, String password) {
         if (!validateForm(email,password)) {
+            Toast.makeText(getContext(), "Неправильная формат почты или пароля.", Toast.LENGTH_SHORT).show();
             return;
         }
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(requireActivity(), task -> {
             if (task.isSuccessful()) {
                 FirebaseUser user = mAuth.getCurrentUser();
-                Toast.makeText(getContext(),"Successful",Toast.LENGTH_SHORT).show();
-                ListSavedSettings list = ListSavedSettings.getInstance();
-                mDatabase.child(user.getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DataSnapshot> task) {
-                        if (task.isSuccessful() && task.getResult().getValue() != null){
-                            list.setInstance(task.getResult().getValue(list.getClass()));
-                        }
-                        else{
-                            list.setId(user.getUid());
-                        }
-                        Navigation.findNavController(getView()).navigate(R.id.action_authorization_to_mainMenu);
-                    }
-                });
+                Toast.makeText(getContext(),"Успешно!",Toast.LENGTH_SHORT).show();
+                downloadSettings(user.getUid());
+                saveSession(user.getUid());
             } else {
-                Toast.makeText(getContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Неправильная почта или пароль.", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private boolean validateForm(String email,String password) {
-        return !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password); // TODO: сделать более умнее
+        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
+            return false;
+        }
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+    private void saveSession(String id){
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("id",id);
+        editor.apply();
+    }
+    private void downloadSettings(String id){
+        ListSavedSettings list = ListSavedSettings.getInstance();
+        mDatabase.child(id).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful() && task.getResult().getValue() != null){
+                    list.setInstance(task.getResult().getValue(list.getClass()));
+                }
+                else{
+                    list.setId(id);
+                }
+                Navigation.findNavController(getView()).navigate(R.id.action_authorization_to_mainMenu);
+            }
+        });
     }
 }

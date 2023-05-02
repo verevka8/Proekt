@@ -7,27 +7,38 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import com.example.proekt.FragmentsAction.MainMenu;
 import com.example.proekt.ListSavedSettings;
 import com.example.proekt.TeaSavedSettings;
-import com.example.proekt.databinding.FragmentTeaParametersBinding;
+import com.example.proekt.databinding.FragmentChangeTeaParametersBinding;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
+public class ChangeTeaParameters extends BottomSheetDialogFragment {
+    private FragmentChangeTeaParametersBinding binding;
+    private int position;
+    private TeaSavedSettings settings;
 
-public class TeaParameters extends BottomSheetDialogFragment {
-    private FragmentTeaParametersBinding binding;
+    public ChangeTeaParameters(TeaSavedSettings settings, int position) {
+        this.settings = settings;
+        this.position = position;
+    }
 
-    public TeaParameters() {}
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentTeaParametersBinding.inflate(inflater, container, false);
-        TeaSavedSettings settings = new TeaSavedSettings();
+        binding = FragmentChangeTeaParametersBinding.inflate(inflater,container,false);
+        binding.nameSettings.setText(settings.title);
+        binding.variety1.setChecked(settings.tea_variety);
+        binding.variety2.setChecked(!settings.tea_variety);
+        binding.countTea.setText(Integer.toString(settings.tea_count));
+        binding.countSugar.setText(Integer.toString(settings.sugar_count));
+        // Добавить температуру
 
         binding.variety1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,21 +96,31 @@ public class TeaParameters extends BottomSheetDialogFragment {
                 binding.countSugar.setText(Integer.toString(settings.sugar_count));
             }
         });
-
-        binding.saveSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ListSavedSettings list = ListSavedSettings.getInstance();
-                list.addSavedSettings(settings);
-                dismiss();
-                MainMenu.adapter.notifyDataSetChanged();
-            }
-        });
-
         binding.closeMenuSetting.setOnClickListener(new View.OnClickListener() {
             @Override
+            public void onClick(View view) {dismiss();}}
+        );
+        binding.updateSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
-                dismiss();
+                if(ListSavedSettings.getInstance().updateSavedSettings(position,settings)){
+                    MainMenu.adapter.notifyDataSetChanged();
+                    ActionTeaParameters.getInstance().updateUi(settings);
+                    dismiss();
+                }
+                else {
+                    Toast.makeText(getContext(), "Настройка с таким названием уже существует!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        binding.removeSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              ListSavedSettings.getInstance().removeSavedSettings(position);
+              dismiss();
+              MainMenu.adapter.notifyDataSetChanged();
+              ActionTeaParameters.getInstance().updateUi(null);
+
             }
         });
         return binding.getRoot();

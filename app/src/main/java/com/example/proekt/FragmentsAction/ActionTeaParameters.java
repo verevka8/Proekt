@@ -2,6 +2,7 @@ package com.example.proekt.FragmentsAction;
 
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,19 +12,17 @@ import com.example.proekt.TeaSavedSettings;
 import com.example.proekt.databinding.FragmentActionTeaParametersBinding;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-public class Action_tea_parameters extends BottomSheetDialogFragment {
+public class ActionTeaParameters extends BottomSheetDialogFragment {
 
     private FragmentActionTeaParametersBinding binding;
     private int position;
     private TeaSavedSettings settings;
-    private static Action_tea_parameters instance;
+    private static ActionTeaParameters instance;
 
-    private Action_tea_parameters() {}
+    private ActionTeaParameters() {}
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    public void onCreate(Bundle savedInstanceState) {super.onCreate(savedInstanceState);}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,11 +32,12 @@ public class Action_tea_parameters extends BottomSheetDialogFragment {
         binding.changeTeaParameters.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Change_tea_parameters fragment = new Change_tea_parameters(settings,position);
+                ChangeTeaParameters fragment = new ChangeTeaParameters(settings,position);
                 fragment.show(getChildFragmentManager(),fragment.getTag());
             }
         });
         binding.makeTea.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 ListSavedSettings.getInstance().prepareTea(position);
@@ -46,9 +46,10 @@ public class Action_tea_parameters extends BottomSheetDialogFragment {
         return binding.getRoot();
     }
 
-    public static Action_tea_parameters getInstance(){
+    public static ActionTeaParameters getInstance(){
+        Log.d("QQQ",instance == null? "null" : "not null");
         if (instance == null){
-            instance = new Action_tea_parameters();
+            instance = new ActionTeaParameters();
         }
         return instance;
     }
@@ -69,6 +70,10 @@ public class Action_tea_parameters extends BottomSheetDialogFragment {
         else{
             dismiss();
         }
-
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        instance = null;
     }
 }

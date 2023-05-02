@@ -7,39 +7,27 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import com.example.proekt.FragmentsAction.Action_tea_parameters;
-import com.example.proekt.FragmentsAction.MainMenu;
 import com.example.proekt.ListSavedSettings;
 import com.example.proekt.TeaSavedSettings;
-import com.example.proekt.databinding.FragmentChangeTeaParametersBinding;
+import com.example.proekt.databinding.FragmentCreateTeaParametersBinding;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-public class Change_tea_parameters extends BottomSheetDialogFragment {
-    private FragmentChangeTeaParametersBinding binding;
-    private int position;
-    private TeaSavedSettings settings;
 
-    public Change_tea_parameters(TeaSavedSettings settings,int position) {
-        this.settings = settings;
-        this.position = position;
-    }
+public class CreateTeaParameters extends BottomSheetDialogFragment {
+    private FragmentCreateTeaParametersBinding binding;
 
+    public CreateTeaParameters() {}
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentChangeTeaParametersBinding.inflate(inflater,container,false);
-        binding.nameSettings.setText(settings.title);
-        binding.variety1.setChecked(settings.tea_variety);
-        binding.variety2.setChecked(!settings.tea_variety);
-        binding.countTea.setText(Integer.toString(settings.tea_count));
-        binding.countSugar.setText(Integer.toString(settings.sugar_count));
-        // Добавить температуру
+        binding = FragmentCreateTeaParametersBinding.inflate(inflater, container, false);
+        TeaSavedSettings settings = new TeaSavedSettings();
 
         binding.variety1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,28 +85,25 @@ public class Change_tea_parameters extends BottomSheetDialogFragment {
                 binding.countSugar.setText(Integer.toString(settings.sugar_count));
             }
         });
-        binding.closeMenuSetting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {dismiss();}}
-        );
-        binding.updateSettings.setOnClickListener(new View.OnClickListener() {
+
+        binding.saveSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                ListSavedSettings.getInstance().updateSavedSettings(position,settings); //TODO: добаить проверку на уникальность имени
-                MainMenu.adapter.notifyDataSetChanged();
-                Action_tea_parameters.getInstance().updateUi(settings);
-                dismiss();
+                ListSavedSettings list = ListSavedSettings.getInstance();
+                if (list.addSavedSettings(settings)) {
+                    dismiss();
+                    MainMenu.adapter.notifyDataSetChanged();
+                }
+                else {
+                    Toast.makeText(getContext(), "Настройка с таким названием уже существует!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-        binding.removeSettings.setOnClickListener(new View.OnClickListener() {
+
+        binding.closeMenuSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              ListSavedSettings.getInstance().removeSavedSettings(position);
-              dismiss();
-              MainMenu.adapter.notifyDataSetChanged();
-              Action_tea_parameters.getInstance().updateUi(null);
-
+                dismiss();
             }
         });
         return binding.getRoot();

@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".FragmentsAction.TeaParameters">
+    tools:context=".FragmentsAction.CreateTeaParameters">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -68,6 +68,7 @@
                 android:id="@+id/variety_1"
                 android:layout_width="124dp"
                 android:layout_height="wrap_content"
+                android:checked="true"
                 android:text="Черный чай" />
 
             <RadioButton

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentsAction.Action_tea_parameters">
+    tools:context=".FragmentsAction.ActionTeaParameters">
 
     <TextView
         android:id="@+id/name_tea_parameters"

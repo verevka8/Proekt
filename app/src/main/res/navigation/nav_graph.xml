@@ -18,5 +18,9 @@
         android:id="@+id/mainMenu"
         android:name="com.example.proekt.FragmentsAction.MainMenu"
         android:label="fragment_main_menu"
-        tools:layout="@layout/fragment_main_menu" />
+        tools:layout="@layout/fragment_main_menu" >
+        <action
+            android:id="@+id/action_mainMenu_to_authorization"
+            app:destination="@id/authorization" />
+    </fragment>
 </navigation>

@@ -1,7 +1,10 @@
 package com.example.proekt.FragmentsAction;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,16 +14,16 @@ import android.view.ViewGroup;
 
 import com.example.proekt.ListSavedSettings;
 import com.example.proekt.MyAdapter;
+import com.example.proekt.R;
 import com.example.proekt.databinding.FragmentMainMenuBinding;
 
 
 public class MainMenu extends Fragment{
     private FragmentMainMenuBinding binding;
     public static MyAdapter adapter;
+    private SharedPreferences pref;
 
-    public MainMenu() {
-    }
-
+    public MainMenu() {}
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,16 +34,27 @@ public class MainMenu extends Fragment{
                              Bundle savedInstanceState) {
         binding = FragmentMainMenuBinding.inflate(inflater,container,false);
         adapter = new MyAdapter(ListSavedSettings.getInstance().settingsList);
+        pref = getActivity().getSharedPreferences("test", Context.MODE_PRIVATE);
+
         RecyclerView recyclerView = binding.recyclerView;
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
-
+        binding.exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(getView()).navigate(R.id.action_mainMenu_to_authorization);
+                ListSavedSettings.getInstance().setInstance(null);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.remove("id");
+                editor.apply();
+            }
+        });
         binding.button2.setOnClickListener(new View.OnClickListener() { //TODO: переименовать кнопку
             @Override
             public void onClick(View view) {
-                TeaParameters fragment = new TeaParameters();
+                CreateTeaParameters fragment = new CreateTeaParameters();
                 fragment.show(getChildFragmentManager(),fragment.getTag());
             }
         });

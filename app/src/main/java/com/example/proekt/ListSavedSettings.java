@@ -27,22 +27,36 @@ public class ListSavedSettings {
         }
         return instance;
     }
-
     public void setId(String id) {
         this.id = id;
     }
-    public void setInstance(ListSavedSettings i){instance = i;}
-
-    public void addSavedSettings(TeaSavedSettings settings){
-        settingsList.add(settings);
-        mDatabase.child(id).setValue(instance);
+    public void setInstance(ListSavedSettings instance){this.instance = instance;}
+    public boolean addSavedSettings(TeaSavedSettings settings){
+        if (isUnique(settings.title)) {
+            settingsList.add(settings);
+            mDatabase.child(id).setValue(instance);
+            return true;
+        }
+        return false;
     }
-    public void updateSavedSettings(int position, TeaSavedSettings new_settings){
-        settingsList.remove(position);
-        settingsList.add(position,new_settings);
-        HashMap<String, Object> result = new HashMap<>();
-        result.put(id,instance);
-        mDatabase.updateChildren(result);
+    private boolean isUnique(String title){
+        for (int i = 0; i < settingsList.size();i++){
+            if (settingsList.get(i).title.equals(title)){
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean updateSavedSettings(int position, TeaSavedSettings settings){
+        if (isUnique(settings.title)) {
+            settingsList.remove(position);
+            settingsList.add(position, settings);
+            HashMap<String, Object> result = new HashMap<>();
+            result.put(id, instance);
+            mDatabase.updateChildren(result);
+            return true;
+        }
+        return false;
     }
     public void removeSavedSettings(int position){
         settingsList.remove(position);
@@ -53,13 +67,21 @@ public class ListSavedSettings {
     public void prepareTea(int posotion){
         TeaSavedSettings settings = settingsList.get(posotion);
         String res = Integer.toString(settings.tea_variety ? 1 : 0) + ";" + Integer.toString(settings.tea_count) + ";" + Integer.toString(settings.sugar_count)
-                + ";" + "30"; //Integer.toString(settings.tea_temperature)
+                + ";" + Integer.toString(settings.tea_temperature);
         mDatabase.child("192-168-1-160").setValue(res);
-        long lastTime = System.currentTimeMillis();
-        long currentTime = lastTime;
-        while (currentTime - lastTime < 9000){
-            currentTime = System.currentTimeMillis();
+        MyThread myThread = new MyThread();
+        myThread.start();
+}
+
+class MyThread extends Thread {
+    public void run() {
+        try {
+            Thread.sleep(9000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
         mDatabase.child("192-168-1-160").removeValue();
     }
+    }
 }
+

@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.proekt.FragmentsAction.Action_tea_parameters;
+import com.example.proekt.FragmentsAction.ActionTeaParameters;
 
 import java.util.ArrayList;
 
@@ -49,7 +49,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyRow> {
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Action_tea_parameters fragment = Action_tea_parameters.getInstance();
+                    ActionTeaParameters fragment = ActionTeaParameters.getInstance();
                     fragment.setParams(settingsList.get(getAdapterPosition()),getAdapterPosition());
                     AppCompatActivity activity = (AppCompatActivity) view.getContext();
                     fragment.show(activity.getSupportFragmentManager(),fragment.getTag());
