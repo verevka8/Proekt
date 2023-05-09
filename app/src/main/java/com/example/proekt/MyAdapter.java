@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.proekt.FragmentsAction.ActionTeaParameters;
+import com.example.proekt.FragmentsAction.BottomSheetFragment.ActionTeaParameters;
 
 import java.util.ArrayList;
 

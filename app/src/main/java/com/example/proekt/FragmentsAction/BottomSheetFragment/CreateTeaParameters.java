@@ -1,4 +1,4 @@
-package com.example.proekt.FragmentsAction;
+package com.example.proekt.FragmentsAction.BottomSheetFragment;
 
 import android.os.Bundle;
 
@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.proekt.FragmentsAction.DefaultFragment.MainMenu;
 import com.example.proekt.ListSavedSettings;
 import com.example.proekt.TeaSavedSettings;
 import com.example.proekt.databinding.FragmentCreateTeaParametersBinding;
@@ -32,14 +33,14 @@ public class CreateTeaParameters extends BottomSheetDialogFragment {
         binding.variety1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                settings.setTea_variety(true);
+                settings.setTea_variety("Черный");
             }
         });
 
         binding.variety2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                settings.setTea_variety(false);
+                settings.setTea_variety("Зеленый");
             }
         });
 
@@ -47,7 +48,7 @@ public class CreateTeaParameters extends BottomSheetDialogFragment {
             @Override
             public void onClick(View view) {
                 settings.addTea_count();
-                binding.countTea.setText(Integer.toString(settings.tea_count));
+                binding.countTea.setText(Double.toString(settings.tea_count) + " г");
             }
         });
 
@@ -55,7 +56,7 @@ public class CreateTeaParameters extends BottomSheetDialogFragment {
             @Override
             public void onClick(View view) {
                 settings.removeTea_count();
-                binding.countTea.setText(Integer.toString(settings.tea_count));
+                binding.countTea.setText(Double.toString(settings.tea_count) + " г");
             }
         });
 
@@ -74,7 +75,7 @@ public class CreateTeaParameters extends BottomSheetDialogFragment {
             @Override
             public void onClick(View view) {
                 settings.addSugar_count();
-                binding.countSugar.setText(Integer.toString(settings.sugar_count));
+                binding.countSugar.setText(Integer.toString(settings.sugar_count) + " шт");
             }
         });
 
@@ -82,7 +83,21 @@ public class CreateTeaParameters extends BottomSheetDialogFragment {
             @Override
             public void onClick(View view) {
                 settings.removeSugar_count();
-                binding.countSugar.setText(Integer.toString(settings.sugar_count));
+                binding.countSugar.setText(Integer.toString(settings.sugar_count) + " шт");
+            }
+        });
+        binding.addTemp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                settings.addTeaTemp();
+                binding.tempTea.setText(Integer.toString(settings.tea_temperature) + "°");
+            }
+        });
+        binding.removeTemp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                settings.removeTeaTemp();
+                binding.tempTea.setText(Integer.toString(settings.tea_temperature) + "°");
             }
         });
 

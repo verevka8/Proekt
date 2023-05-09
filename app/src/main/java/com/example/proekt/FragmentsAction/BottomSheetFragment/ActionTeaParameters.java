@@ -1,4 +1,4 @@
-package com.example.proekt.FragmentsAction;
+package com.example.proekt.FragmentsAction.BottomSheetFragment;
 
 import android.os.Bundle;
 
@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.proekt.ListSavedSettings;
 import com.example.proekt.TeaSavedSettings;
@@ -40,7 +41,19 @@ public class ActionTeaParameters extends BottomSheetDialogFragment {
 
             @Override
             public void onClick(View view) {
-                ListSavedSettings.getInstance().prepareTea(position);
+                if (ListSavedSettings.getInstance().prepareTea(position)){
+                    dismiss();
+                }
+                else{
+                    Toast.makeText(getContext(),"Вы не ввели IP-адрес чайника",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+        binding.closeActionTea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
             }
         });
         return binding.getRoot();
@@ -62,10 +75,10 @@ public class ActionTeaParameters extends BottomSheetDialogFragment {
         if (settings != null) {
             this.settings = settings;
             binding.nameTeaParameters.setText(settings.title);
-            binding.informationTeaParameters.setText("Тип чая: " + Boolean.toString(settings.tea_variety) +
-                    "\nКол-во чая: " + Integer.toString(settings.tea_count) +
-                    "\nТемпература чая: " + Integer.toString(settings.tea_temperature) +
-                    "\nКол-во сахара: " + Integer.toString(settings.sugar_count));
+            binding.countTeaAction.setText(Double.toString(settings.tea_count) + " г");
+            binding.countSugarAction.setText(Integer.toString(settings.sugar_count) + " шт");
+            binding.tempTeaAction.setText(Integer.toString(settings.tea_temperature) + " °");
+            binding.varietyTea.setText(settings.tea_variety);
         }
         else{
             dismiss();

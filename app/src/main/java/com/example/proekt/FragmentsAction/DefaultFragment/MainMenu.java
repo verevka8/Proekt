@@ -1,4 +1,4 @@
-package com.example.proekt.FragmentsAction;
+package com.example.proekt.FragmentsAction.DefaultFragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.proekt.FragmentsAction.BottomSheetFragment.AddIpAdress;
+import com.example.proekt.FragmentsAction.BottomSheetFragment.CreateTeaParameters;
 import com.example.proekt.ListSavedSettings;
 import com.example.proekt.MyAdapter;
 import com.example.proekt.R;
@@ -37,11 +39,11 @@ public class MainMenu extends Fragment{
         pref = getActivity().getSharedPreferences("test", Context.MODE_PRIVATE);
 
         RecyclerView recyclerView = binding.recyclerView;
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
-        binding.exit.setOnClickListener(new View.OnClickListener() {
+        binding.imageButtonExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Navigation.findNavController(getView()).navigate(R.id.action_mainMenu_to_authorization);
@@ -55,6 +57,13 @@ public class MainMenu extends Fragment{
             @Override
             public void onClick(View view) {
                 CreateTeaParameters fragment = new CreateTeaParameters();
+                fragment.show(getChildFragmentManager(),fragment.getTag());
+            }
+        });
+        binding.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AddIpAdress fragment = new AddIpAdress();
                 fragment.show(getChildFragmentManager(),fragment.getTag());
             }
         });
