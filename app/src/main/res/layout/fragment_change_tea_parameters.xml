@@ -6,50 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".FragmentsAction.BottomSheetFragment.ChangeTeaParameters">
 
-    <ImageButton
-        android:id="@+id/remove_sugar"
+    <TextView
+        android:id="@+id/MenuTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="25dp"
-        android:background="#00FFFFFF"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        android:src="@drawable/baseline_remove_24"
+        android:layout_marginTop="16dp"
+        android:text="@string/ChangeTeaParamTitle"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/count_sugar"
-        app:layout_constraintTop_toBottomOf="@+id/remove_portions" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/add_sugar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="9dp"
-        android:background="#00000000"
-        android:minWidth="48dp"
+    <EditText
+        android:id="@+id/nameSettings"
+        android:layout_width="264dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:background="#D9D9D9"
+        android:ems="10"
+        android:hint="@string/hint_SettingsTitle"
+        android:inputType="textPersonName"
+        android:lineSpacingExtra="8sp"
         android:minHeight="48dp"
-        android:src="@drawable/baseline_add_24"
-        app:layout_constraintEnd_toStartOf="@+id/count_sugar"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@+id/imageView_countSugar"
-        app:layout_constraintTop_toBottomOf="@+id/add_portions" />
-
-    <TextView
-        android:id="@+id/count_sugar"
-        android:layout_width="44dp"
-        android:layout_height="wrap_content"
-        android:text="1 шт"
         android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/add_sugar"
-        app:layout_constraintEnd_toStartOf="@+id/remove_sugar"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/add_sugar"
-        app:layout_constraintTop_toTopOf="@+id/add_sugar" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MenuTitle" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -68,15 +53,211 @@
             android:layout_height="wrap_content"
             android:buttonTint="#090909"
             android:checked="true"
-            android:text="Черный чай" />
+            android:text="@string/TeaVariety_1" />
 
         <RadioButton
             android:id="@+id/variety_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:buttonTint="#090909"
-            android:text="Зеленый чай" />
+            android:text="@string/TeaVariety_2" />
     </RadioGroup>
+
+    <ImageView
+        android:id="@+id/imageView_countTea"
+        android:layout_width="49dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="30dp"
+        android:src="@drawable/tea_cup"
+        app:layout_constraintEnd_toStartOf="@+id/remove_portions"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        app:srcCompat="@drawable/tea_cup" />
+
+    <ImageButton
+        android:id="@+id/remove_portions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="9dp"
+        android:background="#00FFFFFF"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:src="@drawable/baseline_remove_24"
+        app:layout_constraintEnd_toStartOf="@+id/count_tea"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageView_countTea"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <TextView
+        android:id="@+id/count_tea"
+        android:layout_width="44dp"
+        android:layout_height="wrap_content"
+        android:text="0.5 г"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/remove_portions"
+        app:layout_constraintEnd_toStartOf="@+id/add_portions"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/remove_portions"
+        app:layout_constraintTop_toTopOf="@+id/remove_portions" />
+
+    <ImageButton
+        android:id="@+id/add_portions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="29dp"
+        android:background="#00000000"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:src="@drawable/baseline_add_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/count_tea"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <ImageView
+        android:id="@+id/imageView_countSugar"
+        android:layout_width="49dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:src="@drawable/sugar"
+        app:layout_constraintEnd_toStartOf="@+id/remove_sugar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_countTea" />
+
+    <ImageButton
+        android:id="@+id/remove_sugar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="9dp"
+        android:background="#00FFFFFF"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:src="@drawable/baseline_remove_24"
+        app:layout_constraintEnd_toStartOf="@+id/count_sugar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageView_countSugar"
+        app:layout_constraintTop_toBottomOf="@+id/remove_portions" />
+
+    <TextView
+        android:id="@+id/count_sugar"
+        android:layout_width="44dp"
+        android:layout_height="wrap_content"
+        android:text="1 шт"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/remove_sugar"
+        app:layout_constraintEnd_toStartOf="@+id/add_sugar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/remove_sugar"
+        app:layout_constraintTop_toTopOf="@+id/remove_sugar" />
+
+    <ImageButton
+        android:id="@+id/add_sugar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="20dp"
+        android:background="#00000000"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:src="@drawable/baseline_add_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/count_sugar"
+        app:layout_constraintTop_toBottomOf="@+id/add_portions" />
+
+    <ImageView
+        android:id="@+id/imageView_tempTea"
+        android:layout_width="49dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:src="@drawable/temperature"
+        app:layout_constraintEnd_toStartOf="@+id/remove_temp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_countSugar" />
+
+    <ImageButton
+        android:id="@+id/remove_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="9dp"
+        android:background="#00FFFFFF"
+        android:src="@drawable/baseline_remove_24"
+        app:layout_constraintEnd_toStartOf="@+id/temp_tea"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageView_tempTea"
+        app:layout_constraintTop_toBottomOf="@+id/remove_sugar" />
+
+    <TextView
+        android:id="@+id/temp_tea"
+        android:layout_width="44dp"
+        android:layout_height="wrap_content"
+        android:text="100°"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/remove_temp"
+        app:layout_constraintEnd_toStartOf="@+id/add_temp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/remove_temp"
+        app:layout_constraintTop_toTopOf="@+id/remove_temp" />
+
+    <ImageButton
+        android:id="@+id/add_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="20dp"
+        android:background="#00FFFFFF"
+        android:src="@drawable/baseline_add_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/temp_tea"
+        app:layout_constraintTop_toBottomOf="@+id/add_sugar" />
+
+    <Button
+        android:id="@+id/remove_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:text="@string/DeleteSetting"
+        android:textAllCaps="false"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/update_settings"
+        app:layout_constraintTop_toBottomOf="@+id/remove_temp" />
+
+    <Button
+        android:id="@+id/update_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="49dp"
+        android:layout_marginTop="33dp"
+        android:text="@string/UpdateSetting"
+        android:textAllCaps="false"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/remove_settings"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_tempTea" />
 
     <ImageButton
         android:id="@+id/close_menu_setting"
@@ -90,188 +271,5 @@
         android:src="@drawable/baseline_close_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/add_portions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
-        android:layout_marginEnd="9dp"
-        android:background="#00000000"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        android:src="@drawable/baseline_add_24"
-        app:layout_constraintEnd_toStartOf="@+id/count_tea"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@+id/imageView_countTea"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
-
-    <ImageButton
-        android:id="@+id/remove_portions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="29dp"
-        android:background="#00FFFFFF"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        android:src="@drawable/baseline_remove_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/count_tea"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
-
-    <TextView
-        android:id="@+id/count_tea"
-        android:layout_width="43dp"
-        android:layout_height="wrap_content"
-        android:text="21 г"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/add_portions"
-        app:layout_constraintEnd_toStartOf="@+id/remove_portions"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/add_portions"
-        app:layout_constraintTop_toTopOf="@+id/add_portions" />
-
-    <EditText
-        android:id="@+id/nameSettings"
-        android:layout_width="264dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="24dp"
-        android:background="#D9D9D9"
-        android:ems="10"
-        android:hint="Название настройки"
-        android:inputType="textPersonName"
-        android:lineSpacingExtra="8sp"
-        android:minHeight="48dp"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MenuTitle" />
-
-    <TextView
-        android:id="@+id/MenuTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Редактирование настройки"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView_countTea"
-        android:layout_width="49dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="29dp"
-        android:layout_marginEnd="30dp"
-        android:src="@drawable/tea_cup"
-        app:layout_constraintEnd_toStartOf="@+id/add_portions"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-        app:srcCompat="@drawable/tea_cup" />
-
-    <ImageView
-        android:id="@+id/imageView_countSugar"
-        android:layout_width="49dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="30dp"
-        android:src="@drawable/sugar"
-        app:layout_constraintEnd_toStartOf="@+id/add_sugar"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_countTea" />
-
-    <ImageView
-        android:id="@+id/imageView_tempTea"
-        android:layout_width="49dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="30dp"
-        android:src="@drawable/temperature"
-        app:layout_constraintEnd_toStartOf="@+id/add_temp"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_countSugar" />
-
-    <TextView
-        android:id="@+id/temp_tea"
-        android:layout_width="43dp"
-        android:layout_height="wrap_content"
-        android:text="100°"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/add_temp"
-        app:layout_constraintEnd_toStartOf="@+id/remove_temp"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/add_temp"
-        app:layout_constraintTop_toTopOf="@+id/add_temp" />
-
-    <ImageButton
-        android:id="@+id/add_temp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="9dp"
-        android:background="#00FFFFFF"
-        android:src="@drawable/baseline_add_24"
-        app:layout_constraintEnd_toStartOf="@+id/temp_tea"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView_tempTea"
-        app:layout_constraintTop_toBottomOf="@+id/add_sugar" />
-
-    <ImageButton
-        android:id="@+id/remove_temp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="25dp"
-        android:background="#00FFFFFF"
-        android:src="@drawable/baseline_remove_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/temp_tea"
-        app:layout_constraintTop_toBottomOf="@+id/remove_sugar" />
-
-    <Button
-        android:id="@+id/remove_settings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
-        android:text="Удалить настройку"
-        android:textAllCaps="false"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/update_settings"
-        app:layout_constraintTop_toBottomOf="@+id/remove_temp" />
-
-    <Button
-        android:id="@+id/update_settings"
-        android:layout_width="wrap_content"
-        android:layout_height="49dp"
-        android:layout_marginTop="33dp"
-        android:text="Обновить настройки"
-        android:textAllCaps="false"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/remove_settings"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_tempTea" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 

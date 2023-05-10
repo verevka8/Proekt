@@ -53,14 +53,14 @@ public class MainMenu extends Fragment{
                 editor.apply();
             }
         });
-        binding.button2.setOnClickListener(new View.OnClickListener() { //TODO: переименовать кнопку
+        binding.imageButtonCreateSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CreateTeaParameters fragment = new CreateTeaParameters();
                 fragment.show(getChildFragmentManager(),fragment.getTag());
             }
         });
-        binding.button.setOnClickListener(new View.OnClickListener() {
+        binding.imageButtonConnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AddIpAdress fragment = new AddIpAdress();

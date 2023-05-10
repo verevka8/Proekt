@@ -77,7 +77,7 @@ public class ActionTeaParameters extends BottomSheetDialogFragment {
             binding.nameTeaParameters.setText(settings.title);
             binding.countTeaAction.setText(Double.toString(settings.tea_count) + " г");
             binding.countSugarAction.setText(Integer.toString(settings.sugar_count) + " шт");
-            binding.tempTeaAction.setText(Integer.toString(settings.tea_temperature) + " °");
+            binding.tempTeaAction.setText(Integer.toString(settings.tea_temperature) + "°");
             binding.varietyTea.setText(settings.tea_variety);
         }
         else{

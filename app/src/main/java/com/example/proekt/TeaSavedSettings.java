@@ -6,7 +6,7 @@ public class TeaSavedSettings implements Cloneable{
     public Double tea_count = 0.5;
     public Integer sugar_count = 1;
     public Integer tea_temperature = 100;
-    public String title;
+    public String title = "";
 
     public void setTea_variety(String tea_variety) {
         this.tea_variety = tea_variety;
