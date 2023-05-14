@@ -42,6 +42,7 @@ public class ActionTeaParameters extends BottomSheetDialogFragment {
             @Override
             public void onClick(View view) {
                 if (ListSavedSettings.getInstance().prepareTea(position)){
+                    Toast.makeText(getContext(),"Ваш чай начал готовиться ",Toast.LENGTH_SHORT).show();
                     dismiss();
                 }
                 else{

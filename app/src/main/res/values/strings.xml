@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Proekt</string>
+    <string name="app_name">Smart Lego Kettle</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ChangeSettings">Изменить настройку</string>
     <string name="CreateTea">Заварить чай</string>
